@@ -44,7 +44,8 @@ class plgContentTuxsocialbook extends JPlugin
 		$this->loadLanguage();		
 		
 		/* For Google +1 */
-		if ($this->params->def('one')){	
+		if ($this->params->def('one'))
+		{	
 			$document = JFactory::getDocument();
 			$gone = "<script type=\"text/javascript\" src=\"http://apis.google.com/js/plusone.js\">{lang: '".$this->params->def('onelang','en')."'}</script>";
 			$document->addCustomTag($gone);
@@ -60,12 +61,13 @@ class plgContentTuxsocialbook extends JPlugin
 	*/
 	public function onContentAfterDisplay($context, &$row, &$params, $page=0) 
 	{   
-		if ($this->params->def('position') == 'dc'){
+		if ($this->params->def('position') == 'dc')
+		{
 			return self::_generateHTML($row, $this->params);
 		} else {
 			return '';
 		}
-    }
+    	}
 	
 	
 	/**
@@ -76,12 +78,15 @@ class plgContentTuxsocialbook extends JPlugin
 	*/
 	public function onContentBeforeDisplay($context, &$row, &$params, $page=0) 
 	{           
-        if ($this->params->def('position') == 'ac'){
+        	if ($this->params->def('position') == 'ac')
+        	{
 			return self::_generateHTML($row, $this->params);			
-		} else {
+		} 
+		else 
+		{
 			return '';
 		}
-    }
+    	}
 	
 	
 	/**
@@ -90,74 +95,99 @@ class plgContentTuxsocialbook extends JPlugin
 	* @package		Joomla.Plugin
 	* @subpackage	Content.tuxsocialbook
 	*/
-	public static function _generateHtml(&$article, $myParams) {
-        $html = '';		
-        if (JFactory::getApplication() -> scope != 'com_content') {
-            return $html;
-        }				
+	public static function _generateHtml(&$article, $myParams) 
+	{
+        	$html = '';		
+        	if (JFactory::getApplication() -> scope != 'com_content') 
+        	{
+            		return $html;
+        	}				
     
 		$document = JFactory::getDocument();
-	    $view = JRequest::getCmd('view');
-        if (
-            !(
-                $view == 'article'
-                || ($myParams -> def('frontpage', true) && $view == 'featured')                
-                || ($myParams -> def('category', true) && $view == 'category')
-            )
-        ) {
-            return $html;
-        }
-        /*
-         * Apply filters for category, article.
-         */       
-        $categoryIDList = array();
-        $categoryMode = '';
-        foreach (explode(',', $myParams -> get('categoryIDList', '')) as $num) {
-            if (is_numeric($num)) {
-                if ($categoryMode == '') {
-                    if ($num[0] == '-') {
-                        $categoryMode = '-';
-                    } else {
-                        $categoryMode = '+';
-                    }
-                }
-                if ($num[0] == '-') {
-                    $categoryIDList[] = -1 * (int) $num;
-                } else {
-                    $categoryIDList[] = (int) $num;
-                }
-            }
-        }
-        if (
-            $categoryMode
-            && (in_array($article -> catid, $categoryIDList) != ($categoryMode == '+'))
-        ) {
-            return $html;
-        }
-        $articleIDList = array();
-        $articleMode = '';
-        foreach (explode(',', $myParams -> get('articleIDList', '')) as $num) {
-            if (is_numeric($num)) {
-                if ($articleMode == '') {
-                    if ($num[0] == '-') {
-                        $articleMode = '-';
-                    } else {
-                        $articleMode = '+';
-                    }
-                }
-                if ($num[0] == '-') {
-                    $articleIDList[] = -1 * (int) $num;
-                } else {
-                    $articleIDList[] = (int) $num;
-                }
-            }
-        }
-        if (
-            $articleMode
-            && (in_array($article -> id, $articleIDList) != ($articleMode == '+'))
-        ) {            
+	    	$view = JRequest::getCmd('view');
+        	if (
+            		!(
+                	$view == 'article'
+                	|| ($myParams -> def('frontpage', true) && $view == 'featured')                
+                	|| ($myParams -> def('category', true) && $view == 'category')
+            		)
+        		) 
+        	{
+            		return $html;
+        	}
+        	/*
+         	* Apply filters for category, article.
+         	*/       
+        	$categoryIDList = array();
+        	$categoryMode = '';
+        	foreach (explode(',', $myParams -> get('categoryIDList', '')) as $num) 
+        	{
+            		if (is_numeric($num)) 
+            		{
+                		if ($categoryMode == '') 
+                		{
+                    			if ($num[0] == '-') 
+                    			{
+                        			$categoryMode = '-';
+                    			} 
+                    			else 
+                    			{
+                        		$categoryMode = '+';
+                    			}
+                		}
+                	
+                		if ($num[0] == '-') 
+                		{
+                    			$categoryIDList[] = -1 * (int) $num;
+                		} 
+                		else 
+                		{
+                    			$categoryIDList[] = (int) $num;
+                		}
+            		}
+        	}
+        	
+        	if (
+            		$categoryMode
+            		&& (in_array($article -> catid, $categoryIDList) != ($categoryMode == '+'))
+        		) 
+        	{
+            		return $html;
+        	}
+        	$articleIDList = array();
+        	$articleMode = '';
+        	foreach (explode(',', $myParams -> get('articleIDList', '')) as $num) 
+        	{
+            		if (is_numeric($num)) 
+            		{
+                		if ($articleMode == '') 
+                		{
+                    			if ($num[0] == '-') 
+                    			{
+                        			$articleMode = '-';
+                    			} 
+                    			else 
+                    			{
+                        			$articleMode = '+';
+                    			}
+                		}
+                		if ($num[0] == '-') 
+                		{
+                    			$articleIDList[] = -1 * (int) $num;
+                		} 
+                		else 
+                		{
+                    			$articleIDList[] = (int) $num;
+                		}
+            		}
+        	}
+        	if (
+            		$articleMode
+            		&& (in_array($article -> id, $articleIDList) != ($articleMode == '+'))
+        		) 
+        	{            
 			return $html;
-        }		
+        	}		
 		
 		/* Style params */
 		$bg = $myParams -> get('boxback');
@@ -185,15 +215,16 @@ class plgContentTuxsocialbook extends JPlugin
 		
 		if($myParams->get('one')) $one = '<div class="faceandtweet_retweet" style="float:'.$myParams->get('float').';"><g:plusone size="'.$myParams->get('onesize','').'" href="'.$url2.'"></g:plusone></div>';
 		
-		if ($myParams->get('posbuttons') == 0){
+		if ($myParams->get('posbuttons') == 0)
+		{
 			$html .= '<div class="faceandtweet" style="background:'.$bg.';border: '.$boxstyle.';padding: '.$bs.';float:left;margin:5px;">'.$like.'<br /><br />'.$retweet.'<br /><br />'.$buzz.'<br /><br />'.$digg.'<br /><br />'.$one.'<div style="clear:both;"></div></div>';
-		} else {
+		} 
+		else 
+		{
 			$html .= '<div class="faceandtweet" style="background:'.$bg.';with: '.$wbutton.'px; border: '.$boxstyle.';padding: '.$bs.';float:left;margin:5px;">'.$like.$retweet.$buzz.$digg.$one.'</div><div style="clear:both;"></div>';
 		}				        
 		$html .='<!--- END Tux Social Bookmarks -->';		
-        return $html;
-	
-    }
-
+        	return $html;	
+    	}
 
 }
