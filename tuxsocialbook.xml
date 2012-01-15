@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.6" type="plugin" group="content" method="upgrade">
+	<name>PLG_TUXSOCIALBOOK</name>
+	<author>Miguel Tuyaré</author>
+	<creationDate>08/26/2010</creationDate>
+	<copyright>Miguel Tuyaré</copyright>
+	<license>This component is released under the GNU/GPL License</license>
+	<authorEmail>developer@tuxmerlin.com.ar</authorEmail>
+	<authorUrl>http://www.tuxmerlin.com.ar</authorUrl>
+	<version>1.1.0</version>
+	<description>TUXSOCIALBOOK_DESC</description>
+	<files>
+		<filename plugin="tuxsocialbook">tuxsocialbook.php</filename>
+		<folder>tuxelements</folder>
+		<folder>languages</folder>
+		<filename>index.html</filename>	
+	</files>
+	<languages folder="languages">		
+		<language tag="es-ES">es-ES/es-ES.plg_content_tuxsocialbook.ini</language>
+		<language tag="es-ES">es-ES/es-ES.plg_content_tuxsocialbook.sys.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_content_tuxsocialbook.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_content_tuxsocialbook.sys.ini</language>
+	</languages>	
+	<config>
+		<fields name="params">
+		<fieldset name="CONFIGURATIONS" addfieldpath="/plugins/content/tuxsocialbook/tuxelements">
+			<field name="a-showin" type="separators" class="fulltext" fielName="crack" value="ABOUT_PLUGIN_SHOW_TEXT" default="ABOUT_PLUGIN_SHOW" />
+			<field name="frontpage" type="radio" default="0" label="SHOWINFP" description="">
+				<option value="0">JNo</option>
+				<option value="1">JYes</option>
+			</field>			
+			<field name="category" type="radio" default="1" label="SHOWCATVIEW" description="SHOWCATVIEW_DESC">
+				<option value="1">JYes</option>
+				<option value="0">JNo</option>
+			</field>			
+			<field name="categoryIDList" type="text" size="50" default="" label="CATEGORYID" description="CATEGORYID_DESC" />
+			<field name="articleIDList" type="text" size="50" default="" label="ARTICLEID" description="ARTICLEID_DESC" />
+		
+			<field name="a-pos" type="separators" class="fulltext" fielName="fish" value="ABOUT_POSITION_TEXT" default="ABOUT_POSITION" />
+			<field name="position" type="list" default="1" label="POSITION" description="POSITION_DESC">				
+				<option value="ac">BEFORECONT</option>
+				<option value="dc">AFTERCONT</option>				     
+			</field>
+			<field name="posbuttons" type="list" default="1" label="BUTTONSPOS" description="BUTTONSPOS_DESC">
+				<option value="1">Horizontal</option>
+				<option value="0">Vertical</option>
+			</field>	
+			<field name="float" type="list" default="left" label="BUTTONALIGN" description="">
+				<option value="right">Right</option>
+				<option value="left">Left</option>
+			</field>
+			<field name="like" type="radio" default="1" label="FBBUTTON" description="">
+				<option value="1">JEnabled</option>
+				<option value="0">JDisabled</option>
+			</field>	
+			<field name="retweet" type="radio" default="1" label="TWITTERBUT" description="">
+				<option value="1">JEnabled</option>
+				<option value="0">JDisabled</option>
+			</field>	
+            <field name="buzz" type="radio" default="1" label="BUZZBUTTON" description="">
+				<option value="1">JEnabled</option>
+				<option value="0">JDisabled</option>
+			</field>
+			<field name="digg" type="radio" default="1" label="DIGGBUTTON" description="">
+				<option value="1">JEnabled</option>
+				<option value="0">JDisabled</option>
+			</field>	
+			<field name="one" type="radio" default="1" label="ONEBUTTON" description="">
+				<option value="1">JEnabled</option>
+				<option value="0">JDisabled</option>
+			</field>
+			
+			<field name="a-twitter" type="separators" class="fulltext" fielName="crack" value="ABOUT_TWITTER_TEXT" default="ABOUT_TWITTER" />
+			<field name="twitter_account" type="text" size="20" default="" label="TWITACCOUNT" description="TWITACCOUNT_DESC" />	
+			<field name="twitter_account2" type="text" size="20" default="" label="TWITRELACC" description="" />	
+			<field name="count" type="list" default="horizontal" label="TWITBUTTONSTYLE" description="">
+				<option value="horizontal">TWITHORCOUNT</option>
+				<option value="vertical">TWITVERCOUNT</option>
+				<option value="none">TWITNOCOUNT</option>
+			</field>
+			<field name="count-width" type="list" default="horizontal" label="TWITMATHWITH" description="">
+				<option value="110">TWITHORZ</option>
+				<option value="55">TWITVER</option>
+				<option value="55">TWITNOCOUNTW</option>
+			</field>
+			
+			<field name="a-google" type="separators" class="fulltext" fielName="fish" value="ABOUT_GOOGLE_TEXT" default="ABOUT_GOOGLE" />
+			<field name="onelang" type="text" size="20" default="en" label="ONELANGUAGE" description="ONELANGUAGE_DESC" />	
+			<field name="onesize" type="list" default="small" label="ONESIZE" description="ONESIZE_DESC">
+				<option value="small">ONESMALL</option>
+				<option value="medium">ONEMEDIUM</option>
+				<option value="">ONESTANDAR</option>
+				<option value="tall">ONESTALL</option>
+			</field>			
+			
+			<field name="a-facebook" type="separators" class="fulltext" fielName="crack" value="ABOUT_FACEBOOK_TEXT" default="ABOUT_FACEBOOK" />
+			<field name="like_style" type="list" default="button_count" label="FBLIKESTYLE" description="">
+				<option value="button_count">FBBUTONCOUNT</option>
+				<option value="standard">FBSTANDARD</option>
+			</field>		
+			<field name="like_width" type="text" size="4" default="90" label="FBLIKEWIDTH" description="" />
+			<field name="like_height" type="text" size="4" default="20" label="FBLIKEHEIGHT" description="" />		
+			<field name="like_verb" type="list" default="like" label="FBLIKETEXT" description="">
+				<option value="like">FBLIKE</option>
+				<option value="recommend">FBRECOMM</option>
+			</field>		
+			<field name="like_color_scheme" type="list" default="light" label="FBSCHEME" description="">
+				<option value="light">FBSCHEMELIGHT</option>
+				<option value="dark">FBSCHEMEDARK</option>
+			</field>							
+			
+			<field name="a-styles" type="separators" class="fulltext" fielName="fish" value="ABOUT_STYLES_TEXT" default="ABOUT_STYLES" />
+			<field name="bordersize" type="text" default="1px" size="30" label="IMGBORDERSIZE" description="IMGBORDERSIZE_DESC" />
+			<field name="bordersep" type="text" default="1px" size="30" label="IMGBORDERSEP" description="IMGBORDERSEP_DESC" />
+			<field name="bordercolor" type="jscolor" default="#CCCCCC" size="30" label="IMGBORDERCOLOR" description="IMGBORDERCOLOR_DESC" />			
+			<field name="bordertype" type="list" default="1" label="IMGORDERTYPE" description="IMGBORDERTYPE_DESC" >
+				<option value="none">jNone</option>
+				<option value="hidden">Hidden</option>
+				<option value="dotted">Dotted</option>
+				<option value="dashed">Dashed</option>
+				<option value="solid">Solid</option>
+				<option value="double">Double</option>
+				<option value="groove">Groove</option>
+				<option value="ridge">Ridge</option>
+				<option value="inset">Inset</option>
+				<option value="outset">Outset</option>
+			</field>
+			<field name="boxback" type="jscolor" default="#CCCCCC" size="30" label="BACKGROUNDCOLOR" description="BACKGROUNDCOLOR_DESC" />
+			
+			<field name="a-tux" type="separators" class="title" fielName="crack" default="ABOUT_TUXEXTENSIONS" />
+			<field name="abouthis" type="separators" class="about" fielName="gray" default="ABOUT_ARTICLES" />				
+		</fieldset>		
+		</fields>
+	</config>	
+</extension>
